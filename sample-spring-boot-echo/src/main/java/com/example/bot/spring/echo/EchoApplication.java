@@ -37,7 +37,7 @@ public class EchoApplication {
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         String expense = "1";
-        String remarks = "from line bot";
+        String remark = "from line bot";
         System.out.println("event: " + event);
         final String originalMessageText = event.getMessage().getText();
         String[] textList = originalMessageText.split(",");
@@ -45,9 +45,10 @@ public class EchoApplication {
             expense = textList[0];
         }
         if (textList.length == 2) {
-            remarks = textList[1];
+            remark = textList[1];
         }
-        return new TextMessage("expense:" + expense + " remarks:" + remarks);
+        String result = SugarRestAPI.get(expense, remark);
+        return new TextMessage(result);
     }
 
     @EventMapping
