@@ -45,6 +45,6 @@ public class SugarRestAPI {
     }
 
     public static void setRestApiKey(String restApiKey) {
-    	SugarRestAPI.restApiKey = restApiKey;
+        SugarRestAPI.restApiKey = restApiKey;
     }
 }
