@@ -41,10 +41,10 @@ public class EchoApplication {
         System.out.println("event: " + event);
         final String originalMessageText = event.getMessage().getText();
         String[] textList = originalMessageText.split(",");
-        if(textList.length >= 1) {
-        	expense = textList[0];
+        if (textList.length >= 1) {
+            expense = textList[0];
         }
-        if(textList.length == 2) {
+        if (textList.length == 2) {
             remarks = textList[1];
         }
         return new TextMessage("expense:" + expense + " remarks:" + remarks);
