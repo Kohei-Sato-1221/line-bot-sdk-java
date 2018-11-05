@@ -14,11 +14,16 @@
  * under the License.
  */
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile project(':line-bot-api-client')
     compile 'com.fasterxml.jackson.core:jackson-databind'
     compile 'com.google.guava:guava'
 
-    optional 'javax.servlet:javax.servlet-api'
+    /* sato added */
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0'
     optional 'org.slf4j:slf4j-api'
 }
