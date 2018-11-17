@@ -32,7 +32,7 @@ import org.apache.http.util.EntityUtils;
 public class SugarRestAPI {
     private static String restApiKey = "sugarsugarsugar1221";
     private static String accoutBookUrl = "/macros/s/AKfycbxzIFcv8BScGoMdeke23HP2P8L4r1o5NO4HVLmkqQ0OKO9uMng/";
-    
+
     /*　参考：http://www.techscore.com/blog/2016/09/20/jersey-client-api/　*/
     /*
     public static String get(String expense, String remark) {
