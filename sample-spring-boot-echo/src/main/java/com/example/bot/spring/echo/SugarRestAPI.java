@@ -19,13 +19,14 @@ package com.example.bot.spring.echo;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -33,7 +34,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-
 
 public class SugarRestAPI {
     private static String restApiKey = "";
@@ -85,7 +85,7 @@ public class SugarRestAPI {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-		} finally {
+        } finally {
             try {
                 if (response != null) {
                     response.close();
