@@ -37,7 +37,7 @@ public class EchoApplication {
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         String expense = "1";
-        String remark = "from line bot";
+        String remark = "FromLineBot";
         System.out.println("event: " + event);
         final String originalMessageText = event.getMessage().getText();
         String[] textList = originalMessageText.split(",");
