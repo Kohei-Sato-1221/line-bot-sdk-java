@@ -76,7 +76,7 @@ public class SugarRestAPI {
             int status = response.getStatusLine().getStatusCode();
 
             if (status == HttpStatus.SC_OK) {
-                responseData = EntityUtils.toString(response.getEntity(),charset);
+                responseData = "##" + urlSb.toString() + ":"  + EntityUtils.toString(response.getEntity(),charset);
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
