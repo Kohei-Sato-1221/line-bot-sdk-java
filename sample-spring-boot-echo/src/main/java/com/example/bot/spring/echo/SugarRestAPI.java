@@ -16,13 +16,14 @@
 
 package com.example.bot.spring.echo;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import org.apache.http.HttpStatus;
@@ -70,13 +71,13 @@ public class SugarRestAPI {
 
         CloseableHttpResponse response = null;
         String responseData = "Error!!";
-        
+
         try {
             response = httpclient.execute(request);
             int status = response.getStatusLine().getStatusCode();
 
-            if (status == HttpStatus.SC_OK){				
-                responseData = EntityUtils.toString(response.getEntity(),charset);				
+            if (status == HttpStatus.SC_OK) {
+                responseData = EntityUtils.toString(response.getEntity(),charset);
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
@@ -85,17 +86,17 @@ public class SugarRestAPI {
         } catch (IOException e) {
             e.printStackTrace();
 		} finally {
-		    try {
-		        if (response != null) {
-		            response.close();
-		        }
-		        if (httpclient != null) {
-		            httpclient.close();
-		        }
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-		}
+            try {
+                if (response != null) {
+                    response.close();
+                }
+                if (httpclient != null) {
+                    httpclient.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return responseData;
     }
 
