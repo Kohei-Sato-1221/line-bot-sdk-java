@@ -66,7 +66,8 @@ public class SugarRestAPI {
         urlSb.append("remark=" + remark);
         Charset charset = StandardCharsets.UTF_8;
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpGet request = new HttpGet(urlSb.toString());
+        String urlStr = urlSb.toString();
+        HttpGet request = new HttpGet(urlStr);
 
         CloseableHttpResponse response = null;
         String responseData = "Error!!";
@@ -76,7 +77,7 @@ public class SugarRestAPI {
             int status = response.getStatusLine().getStatusCode();
 
             if (status == HttpStatus.SC_OK) {
-                responseData = "##" + urlSb.toString() + ":"  + EntityUtils.toString(response.getEntity(),charset);
+                responseData = "#" + urlStr + ":"  + EntityUtils.toString(response.getEntity(),charset);
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
