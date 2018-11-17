@@ -21,6 +21,19 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+
+
 public class SugarRestAPI {
     private static String restApiKey = "";
 
@@ -42,6 +55,48 @@ public class SugarRestAPI {
                 throw e;
             }
         return result;
+    }
+
+    public static String addAccountData(String expense, String remark) {
+        StringBuilder urlSb = new StringBuilder();
+        urlSb.append("https://script.google.com");
+        urlSb.append("/macros/s/AKfycbxzIFcv8BScGoMdeke23HP2P8L4r1o5NO4HVLmkqQ0OKO9uMng/exec?");
+        urlSb.append("key=" + restApiKey + "&");
+        urlSb.append("expense=" + expense + "&");
+        urlSb.append("remark=" + remark);
+        Charset charset = StandardCharsets.UTF_8;
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpGet request = new HttpGet(urlSb.toString());
+
+        CloseableHttpResponse response = null;
+        String responseData = "Error!!";
+        
+        try {
+            response = httpclient.execute(request);
+            int status = response.getStatusLine().getStatusCode();
+
+            if (status == HttpStatus.SC_OK){				
+                responseData = EntityUtils.toString(response.getEntity(),charset);				
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+		} finally {
+		    try {
+		        if (response != null) {
+		            response.close();
+		        }
+		        if (httpclient != null) {
+		            httpclient.close();
+		        }
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		}
+        return responseData;
     }
 
     public static void setRestApiKey(String restApiKey) {

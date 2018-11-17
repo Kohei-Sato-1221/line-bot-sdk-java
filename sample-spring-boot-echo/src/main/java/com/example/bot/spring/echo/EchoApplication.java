@@ -47,7 +47,7 @@ public class EchoApplication {
         if (textList.length == 2) {
             remark = textList[1];
         }
-        String result = SugarRestAPI.get(expense, remark);
+        String result = SugarRestAPI.addAccountData(expense, remark);
         return new TextMessage(result);
     }
 
