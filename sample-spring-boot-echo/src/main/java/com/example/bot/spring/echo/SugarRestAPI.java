@@ -18,7 +18,6 @@ package com.example.bot.spring.echo;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
