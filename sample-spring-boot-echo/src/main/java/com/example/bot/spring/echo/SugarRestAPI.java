@@ -21,11 +21,6 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -36,8 +31,10 @@ import org.apache.http.util.EntityUtils;
 
 public class SugarRestAPI {
     private static String restApiKey = "sugarsugarsugar1221";
-
+    private static String accoutBookUrl = "/macros/s/AKfycbxzIFcv8BScGoMdeke23HP2P8L4r1o5NO4HVLmkqQ0OKO9uMng/";
+    
     /*　参考：http://www.techscore.com/blog/2016/09/20/jersey-client-api/　*/
+    /*
     public static String get(String expense, String remark) {
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target("https://script.google.com")
@@ -56,11 +53,12 @@ public class SugarRestAPI {
             }
         return result;
     }
+    */
 
     public static String addAccountData(String expense, String remark) {
         StringBuilder urlSb = new StringBuilder();
         urlSb.append("https://script.google.com");
-        urlSb.append("/macros/s/AKfycbxzIFcv8BScGoMdeke23HP2P8L4r1o5NO4HVLmkqQ0OKO9uMng/exec?");
+        urlSb.append(accoutBookUrl + "exec?");
         urlSb.append("key=" + restApiKey + "&");
         urlSb.append("expense=" + expense + "&");
         urlSb.append("remark=" + remark);
